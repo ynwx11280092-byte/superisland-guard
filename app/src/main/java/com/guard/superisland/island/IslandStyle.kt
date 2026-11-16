@@ -22,18 +22,21 @@ object IslandStyle {
     private fun softGlass(r: Float): Drawable =
         GradientDrawable().apply {
             cornerRadius = r
-            colors = intArrayOf(0x59FFFFFF, 0x21FFFFFF)
+            colors = intArrayOf(0x59FFFFFF.toInt(), 0x21FFFFFF.toInt())
             orientation = GradientDrawable.Orientation.TOP_BOTTOM
-            setStroke(1, 0x80FFFFFF)
+            setStroke(1, 0x80FFFFFF.toInt())
         }
 
     private fun liquidGlass(r: Float): Drawable =
         GradientDrawable().apply {
             cornerRadius = r
             // 左上高光 → 通透中部 → 淡蓝折射 → 底部透白
-            colors = intArrayOf(0x99FFFFFF, 0x22FFFFFF, 0x3DB4E5FF, 0x14FFFFFF)
+            colors = intArrayOf(
+                0x99FFFFFF.toInt(), 0x22FFFFFF.toInt(),
+                0x3DB4E5FF.toInt(), 0x14FFFFFF.toInt()
+            )
             orientation = GradientDrawable.Orientation.TL_BR
-            setStroke(1, 0xAAFFFFFF)
+            setStroke(1, 0xAAFFFFFF.toInt())
         }
 }
 
