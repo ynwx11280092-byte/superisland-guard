@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="enabled"
+        app:title="启用守护"
+        app:summaryOn="已启用：进入应用锁时自动触发明示抓拍"
+        app:summaryOff="已停用"
+        app:defaultValue="true" />
+
+    <ListPreference
+        app:key="mode"
+        app:title="取证方式"
+        app:entries="@array/mode_entries"
+        app:entryValues="@array/mode_values"
+        app:defaultValue="photo"
+        app:useSimpleSummaryProvider="true" />
+
+    <SeekBarPreference
+        app:key="interval_sec"
+        app:title="抓拍间隔（秒）"
+        app:summary="每张照片之间的间隔，连续抓拍模式生效"
+        app:min="1"
+        app:max="30"
+        app:defaultValue="2" />
+
+    <SeekBarPreference
+        app:key="max_count"
+        app:title="数量上限（张）"
+        app:summary="达到该数量后停止抓拍"
+        app:min="1"
+        app:max="60"
+        app:defaultValue="8" />
+
+    <SeekBarPreference
+        app:key="max_duration_sec"
+        app:title="时间上限（秒）"
+        app:summary="抓拍/录像总时长上限，到点自动停止"
+        app:min="5"
+        app:max="120"
+        app:defaultValue="30" />
+
+    <ListPreference
+        app:key="theme"
+        app:title="超级岛 UI 风格"
+        app:entries="@array/theme_entries"
+        app:entryValues="@array/theme_values"
+        app:defaultValue="liquidglass"
+        app:useSimpleSummaryProvider="true" />
+
+    <SwitchPreferenceCompat
+        app:key="flash_overlay"
+        app:title="屏幕闪光提示"
+        app:summary="抓拍时全屏闪一下白屏，明确的可见提示"
+        app:defaultValue="true" />
+
+    <SwitchPreferenceCompat
+        app:key="shutter_sound"
+        app:title="快门声提示"
+        app:summary="每次抓拍播放系统快门声"
+        app:defaultValue="true" />
+
+    <SwitchPreferenceCompat
+        app:key="save_to_gallery"
+        app:title="存入系统相册"
+        app:summary="照片/录像写入公共相册，便于查看取证结果"
+        app:defaultValue="true" />
+
+    <Preference
+        app:key="overlay_permission"
+        app:title="开启悬浮窗权限"
+        app:summary="屏幕闪光与独立超级岛兜底需要悬浮窗权限" />
+
+    <Preference
+        app:key="test_capture"
+        app:title="立即测试抓拍一张"
+        app:summary="手动触发一次抓拍，验证摄像头与岛通知是否正常" />
+
+</PreferenceScreen>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mode_entries">
+        <item>连续抓拍</item>
+        <item>录像</item>
+    </string-array>
+    <string-array name="mode_values">
+        <item>photo</item>
+        <item>video</item>
+    </string-array>
+
+    <string-array name="theme_entries">
+        <item>柔光</item>
+        <item>液态玻璃</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>softglass</item>
+        <item>liquidglass</item>
+    </string-array>
+</resources>

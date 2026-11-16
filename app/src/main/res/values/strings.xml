@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">超级岛防盗守卫</string>
+    <string name="xposed_desc">明示式防盗取证：进入应用锁时触发前置摄像头抓拍/录像，弹出超级岛通知（快门声+闪光+常驻通知全程可见）。仅限安装在你自己的设备上防丢/防盗使用。</string>
+
+    <string-array name="xposed_scope">
+        <item>com.miui.securitycenter</item>
+        <item>com.guard.superisland</item>
+    </string-array>
+
+    <string name="notif_channel_guard">守护服务</string>
+    <string name="notif_channel_capture">取证拍摄</string>
+    <string name="notif_guard_title">超级岛防盗守卫运行中</string>
+    <string name="notif_guard_text">空闲守护中，进入应用锁时触发明示抓拍</string>
+    <string name="notif_capture_title">正在明示取证拍摄</string>
+    <string name="notif_capture_text">已抓拍 %1$d 张 · 用时 %2$d 秒</string>
+</resources>
