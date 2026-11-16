@@ -8,8 +8,8 @@ if [ "$(id -u)" = "0" ]; then SUDO=""; else SUDO="sudo"; fi
 
 SDK_ROOT="${ANDROID_SDK_ROOT:-$HOME/android-sdk}"
 GRADLE_VER="8.7"
-BUILD_TOOLS="34.0.0"
-PLATFORM="android-34"
+BUILD_TOOLS="36.0.0"
+PLATFORM="android-36"
 CMD_URL="https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip"
 GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VER}-bin.zip"
 

@@ -26,6 +26,12 @@ jobs:
         with:
           gradle-version: "8.7"
 
+      - name: Install Android SDK platform 36
+        run: |
+          SDKMGR="${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMGR" --licenses > /dev/null 2>&1 || true
+          "$SDKMGR" "platforms;android-36" "build-tools;36.0.0" > /dev/null 2>&1 || true
+
       - name: Build debug APK (signed, installable)
         run: gradle :app:assembleDebug --no-daemon
 
