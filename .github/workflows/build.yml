@@ -5,6 +5,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,3 +34,20 @@ jobs:
         with:
           name: superisland-guard-debug
           path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Push APK to dist branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          mkdir -p /tmp/dist
+          cp app/build/outputs/apk/debug/app-debug.apk /tmp/dist/app-debug.apk
+          cd /tmp/dist
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add app-debug.apk
+          git commit -q -m "app-debug.apk $(date -u +%Y%m%dT%H%M%SZ)" || echo "无变更"
+          git branch -M dist
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/ynwx11280092-byte/superisland-guard.git"
+          git push -f origin dist
