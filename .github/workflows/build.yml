@@ -32,16 +32,37 @@ jobs:
           yes | "$SDKMGR" --licenses > /dev/null 2>&1 || true
           "$SDKMGR" "platforms;android-36" "build-tools;36.0.0" > /dev/null 2>&1 || true
 
-      - name: Build debug APK (signed, installable)
-        run: gradle :app:assembleDebug --no-daemon
+      - name: Build debug APK
+        run: |
+          set -o pipefail
+          gradle :app:assembleDebug --no-daemon --stacktrace 2>&1 | tee /tmp/build.log
+
+      - name: Push build log (always)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          mkdir -p /tmp/logdist && cp /tmp/build.log /tmp/logdist/build.log
+          cd /tmp/logdist
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add build.log
+          git commit -q -m "build log $(date -u +%Y%m%dT%H%M%SZ)" || true
+          git branch -M buildlog
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/ynwx11280092-byte/superisland-guard.git"
+          git push -f origin buildlog
 
       - name: Upload APK artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: superisland-guard-debug
           path: app/build/outputs/apk/debug/app-debug.apk
 
       - name: Push APK to dist branch
+        if: success()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
