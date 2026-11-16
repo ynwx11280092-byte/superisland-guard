@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <SwitchPreferenceCompat
         app:key="enabled"
@@ -21,7 +22,7 @@
         app:title="抓拍间隔（秒）"
         app:summary="每张照片之间的间隔，连续抓拍模式生效"
         app:min="1"
-        app:max="30"
+        android:max="30"
         app:defaultValue="2" />
 
     <SeekBarPreference
@@ -29,7 +30,7 @@
         app:title="数量上限（张）"
         app:summary="达到该数量后停止抓拍"
         app:min="1"
-        app:max="60"
+        android:max="60"
         app:defaultValue="8" />
 
     <SeekBarPreference
@@ -37,7 +38,7 @@
         app:title="时间上限（秒）"
         app:summary="抓拍/录像总时长上限，到点自动停止"
         app:min="5"
-        app:max="120"
+        android:max="120"
         app:defaultValue="30" />
 
     <ListPreference
