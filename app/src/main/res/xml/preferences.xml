@@ -41,14 +41,6 @@
         android:max="120"
         app:defaultValue="30" />
 
-    <ListPreference
-        app:key="theme"
-        app:title="超级岛 UI 风格"
-        app:entries="@array/theme_entries"
-        app:entryValues="@array/theme_values"
-        app:defaultValue="liquidglass"
-        app:useSimpleSummaryProvider="true" />
-
     <SwitchPreferenceCompat
         app:key="flash_overlay"
         app:title="屏幕闪光提示"
@@ -70,7 +62,7 @@
     <Preference
         app:key="overlay_permission"
         app:title="开启悬浮窗权限"
-        app:summary="屏幕闪光与独立超级岛兜底需要悬浮窗权限" />
+        app:summary="全屏闪光提示需要「显示在其他应用上层」权限（原生岛无需此权限）" />
 
     <Preference
         app:key="test_capture"

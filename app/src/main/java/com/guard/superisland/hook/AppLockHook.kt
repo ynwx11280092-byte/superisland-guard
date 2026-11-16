@@ -37,8 +37,22 @@ object AppLockHook {
                 }
             )
             XposedBridge.log("[SuperIslandGuard] Activity.onResume hook installed in securitycenter")
+            reportHookActive()
         } catch (t: Throwable) {
             XposedBridge.log("[SuperIslandGuard] hook failed: ${t.message}")
+        }
+    }
+
+    /** 通过 ContentProvider 向本应用上报「hook 已注入」，供界面状态展示 */
+    private fun reportHookActive() {
+        try {
+            val at = Class.forName("android.app.ActivityThread")
+                .getMethod("currentActivityThread").invoke(null)
+            val app = at.javaClass.getMethod("getApplication").invoke(at) as? android.content.Context
+                ?: return
+            app.contentResolver.call(Uri.parse(PROVIDER_URI), "hookAlive", null, null)
+        } catch (t: Throwable) {
+            XposedBridge.log("[SuperIslandGuard] reportHookActive failed: ${t.message}")
         }
     }
 

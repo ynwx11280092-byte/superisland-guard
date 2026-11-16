@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Binder
 import android.os.Bundle
 import com.guard.superisland.service.GuardService
+import com.guard.superisland.util.RootStatus
 import com.guard.superisland.util.Triggers
 
 /**
@@ -24,8 +25,9 @@ class TriggerProvider : ContentProvider() {
         val allowed = caller == "com.miui.securitycenter" || caller == "com.guard.superisland"
         if (!allowed) return null
 
-        if (method == "appLockEntered") {
-            GuardService.trigger(ctx, Triggers.REASON_APP_LOCK)
+        when (method) {
+            "appLockEntered" -> GuardService.trigger(ctx, Triggers.REASON_APP_LOCK)
+            "hookAlive" -> RootStatus.reportHookActive(ctx)
         }
         return Bundle()
     }
