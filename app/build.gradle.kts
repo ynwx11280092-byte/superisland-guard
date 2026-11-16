@@ -37,6 +37,15 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        // hyperisland_kit 传递引入 core/core-ktx 1.17.0（要求 AGP 8.9.1+）。
+        // 本模块只用基础 API，钉回 1.13.1 以兼容 AGP 8.6.1。
+        force("androidx.core:core-ktx:1.13.1")
+        force("androidx.core:core:1.13.1")
+    }
+}
+
 dependencies {
     // LSPosed / 经典 XposedBridge API：仅编译期，运行时由 LSPosed 提供
     compileOnly("de.robv.android.xposed:api:82")
